@@ -1,10 +1,13 @@
 package com.library.serviceImp;
 
+import org.springframework.stereotype.Service;
+
 import com.library.dao.BookRepo;
-import com.library.service.BookIssueServiceInterface;
+import com.library.service.BookServiceInterface;
 
 
-public class BookIssueServiceImpl implements BookIssueServiceInterface {
+@Service
+public class BookServiceImpl implements BookServiceInterface {
 
 	@Override
 	public void addBookToBorrowList() {

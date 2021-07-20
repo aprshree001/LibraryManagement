@@ -7,47 +7,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.library.modal.Book;
-import com.library.modal.Borrow;
-import com.library.serviceImp.BorroServiceImpl;
-import com.nimbusds.oauth2.sdk.http.HTTPResponse;
+import com.library.modal.BorrowEntity;
+import com.library.service.BorrowServiceInterface;
 
-import dto.UserRequestdto;
+import dto.BorrowRequestDto;
 
 @RestController
-public class BorrowListController {
-	
-	
-	@Autowired
-	BorroServiceImpl borrowService;
-	
-	
 
-	@PostMapping("/addBook")
-	public ResponseEntity<Borrow> addBook(@RequestBody UserRequestdto UserRequestdto){
-		
-	
-		
-	
-		String  userid = UserRequestdto.getBookid();
-		String  bookid = UserRequestdto.getBookid();
-		Integer quantity = UserRequestdto.getQuantity();
-		
-		UserRequestdto userrequest = new UserRequestdto();
-		
-		userrequest.setBookid(bookid);
-		userrequest.setUserid(userid);
-		userrequest.setQuantity(quantity);
-		
-		Borrow response = borrowService.addBookToBorrowList(userrequest);
-		
-		
-	     return new ResponseEntity<Borrow>(response, HttpStatus.OK);
-		
-		
-		
+public class BorrowListController {
+
+	@Autowired
+	BorrowServiceInterface borrowService;
+
+	@PostMapping("/api/borrow")
+	public ResponseEntity<BorrowEntity> addBook(@RequestBody BorrowRequestDto borrowRequest) {
+
+		BorrowEntity response = borrowService.addBookToBorrowItems(borrowRequest);
+
+		return new ResponseEntity<BorrowEntity>(response, HttpStatus.OK);
+
 	}
-	
-	
+
+	@PostMapping("/api/borrow/returnbook")
+	public ResponseEntity returnBook(@RequestBody BorrowRequestDto bookrequest) {
+		borrowService.returnBookFromBorrowedItems(bookrequest);
+		return new ResponseEntity(HttpStatus.OK);
+	}
 
 }

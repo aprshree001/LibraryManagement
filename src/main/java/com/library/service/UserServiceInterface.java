@@ -1,11 +1,11 @@
 package com.library.service;
 
-import com.library.modal.Book;
+import com.library.modal.BookEntity;
 
 public interface UserServiceInterface {
 	
 	
-	public void addBookItem(Book bookitem);
+	public void addBookItem(BookEntity bookitem);
 	public void getAllBookList();
 	public void editBookItem();
 	public void returnBookItem();

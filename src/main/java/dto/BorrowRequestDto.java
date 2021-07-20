@@ -1,11 +1,11 @@
 package dto;
 
-public class UserRequestdto {
 
+public class BorrowRequestDto {
 	
 	private String userid;
 	private String bookid;
-	private Integer quantity;
+	private Integer quantity =new Integer(1);
 	
 	
 	public String getUserid() {

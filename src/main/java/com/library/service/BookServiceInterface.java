@@ -1,6 +1,6 @@
 package com.library.service;
 
- public interface  BookIssueServiceInterface {
+ public interface  BookServiceInterface {
 	
 	
 	public void addBookToBorrowList();
